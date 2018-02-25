@@ -14,6 +14,7 @@ type translationDetails struct {
 	Name       string
 	NameCommon string
 	NameShort  string
+	Copyright  string
 }
 
 var (
@@ -54,6 +55,7 @@ var translations = map[string]translationDetails{
 		NameShort:  "MSG",
 		NameCommon: "The Message",
 		Name:       "The Message",
+		Copyright:  "Scripture taken from The Message. Copyright © 1993, 1994, 1995, 1996, 2000, 2001, 2002. Used by permission of NavPress Publishing Group.",
 	},
 }
 
@@ -137,7 +139,13 @@ func (b BibleBiblesOrg) GetPassage(reference string) (*Passage, error) {
 	passage := Passage{
 		Html:         transposePassageHtml(html),
 		TrackingCode: searchRes.Response.Meta.FumsNoscript,
-		Copyright:    transposePassageCopyright(searchRes.Response.Search.Result.Passages[0].Copyright),
+		Copyright: func() string {
+			if b.translation.Copyright != "" {
+				return b.translation.Copyright
+			} else {
+				return transposePassageCopyright(searchRes.Response.Search.Result.Passages[0].Copyright)
+			}
+		}(),
 	}
 
 	return &passage, nil
