@@ -17,8 +17,11 @@ type translationDetails struct {
 }
 
 var (
-	CEV = "CEV"
-	GNT = "GNT"
+	CEV  = "CEV"
+	GNT  = "GNT"
+	NASB = "NASB"
+	AMP  = "AMP"
+	MSG  = "MSG"
 )
 
 var translations = map[string]translationDetails{
@@ -33,6 +36,24 @@ var translations = map[string]translationDetails{
 		NameShort:  "GNT",
 		NameCommon: "Good News Translation",
 		Name:       "1992 Good News Translation, Second Edition (US Version)",
+	},
+	NASB: {
+		ID:         "eng-NASB",
+		NameShort:  "NASB",
+		NameCommon: "New American Standard Bible",
+		Name:       "1995, New American Standard Bible",
+	},
+	AMP: {
+		ID:         "eng-AMP",
+		NameShort:  "AMP",
+		NameCommon: "Amplified Bible",
+		Name:       "Amplified Bible",
+	},
+	MSG: {
+		ID:         "eng-MSG",
+		NameShort:  "MSG",
+		NameCommon: "The Message",
+		Name:       "The Message",
 	},
 }
 
@@ -132,5 +153,6 @@ func transposePassageHtml(s string) string {
 func transposePassageCopyright(s string) string {
 	s = regexp.MustCompile("(&#169;)").ReplaceAllString(s, "</br>$1")
 	s = regexp.MustCompile("(</p>)").ReplaceAllString(s, "</br>Used with permission.$1")
+	s = regexp.MustCompile(",([^ ])").ReplaceAllString(s, ", $1")
 	return s
 }
