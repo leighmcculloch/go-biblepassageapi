@@ -9,12 +9,12 @@ type Passage struct {
 }
 
 func (p *Passage) TimeToReadInMinutes() int {
-	const READING_WORDS_PER_MINUTE = 220
+	const readingWordsPerMin = 220
 	text := p.Html
 	wordCount := strings.Count(text, " ")
-	wordsPerMinute := wordCount / READING_WORDS_PER_MINUTE
-	if wordsPerMinute == 0 {
-		wordsPerMinute = 1
+	minutes := wordCount / readingWordsPerMin
+	if minutes == 0 {
+		minutes = 1
 	}
-	return wordsPerMinute
+	return minutes
 }
