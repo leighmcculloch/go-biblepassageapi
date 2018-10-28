@@ -6,6 +6,8 @@ import (
 	"net/url"
 )
 
+var _ Bible = BibleNET{}
+
 type BibleNET struct{}
 
 func NewBibleNET() BibleNET {
@@ -24,7 +26,7 @@ func (b BibleNET) NameCommon() string {
 	return "NET Bible"
 }
 
-func (b BibleNET) Name() string {
+func (b BibleNET) NameLong() string {
 	return "New English Translation Bible"
 }
 

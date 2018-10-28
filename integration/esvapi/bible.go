@@ -6,6 +6,8 @@ import (
 	"net/url"
 )
 
+var _ Bible = BibleESVAPI{}
+
 type BibleESVAPI struct {
 	apiKey string
 }
@@ -26,7 +28,7 @@ func (b BibleESVAPI) NameCommon() string {
 	return "English Standard Version"
 }
 
-func (b BibleESVAPI) Name() string {
+func (b BibleESVAPI) NameLong() string {
 	return "English Standard Version"
 }
 

@@ -3,14 +3,14 @@ package biblepassageapi
 import "strings"
 
 type Passage struct {
-	Html         string
+	HTML         string
 	TrackingCode string
 	Copyright    string
 }
 
-func (p *Passage) TimeToReadInMinutes() int {
+func (p Passage) TimeToReadInMinutes() int {
 	const readingWordsPerMin = 220
-	text := p.Html
+	text := p.HTML
 	wordCount := strings.Count(text, " ")
 	minutes := wordCount / readingWordsPerMin
 	if minutes == 0 {
