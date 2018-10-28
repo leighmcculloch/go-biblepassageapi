@@ -1,1 +1,1 @@
-module "4d63.com/biblepassageapi"
+module 4d63.com/biblepassageapi
